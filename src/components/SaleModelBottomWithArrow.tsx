@@ -1,6 +1,7 @@
 "use client";
 
 import FlowNode from "./FlowNode";
+import Arrow from "./Arrow";
 
 interface SaleModelBottomWithArrowProps {
     isActive: boolean;
@@ -11,27 +12,14 @@ export default function SaleModelBottomWithArrow({ isActive }: SaleModelBottomWi
         <div className={`transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-50'}`}>
             {/* SVG for arrow */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
-                {/* Elbow Arrow: Sale Model -> User end (down, left, down) */}
-                <polyline
+                <Arrow
+                    type="polyline"
+                    isActive={isActive}
                     points="1486,415 1486,460 1052,460 1052,500"
-                    stroke="#1a1a1a"
-                    strokeWidth="2"
-                    fill="none"
-                    markerEnd="url(#arrow)"
-                    className={isActive ? "flow-arrow" : ""}
+                    label="Final Response"
+                    labelX={1253}
+                    labelY={450}
                 />
-
-                {/* Label: "Final Response" */}
-                <text
-                    x="1253"
-                    y="450"
-                    fill="#1a1a1a"
-                    fontSize="12"
-                    fontWeight="400"
-                    textAnchor="middle"
-                >
-                    Final Response
-                </text>
             </svg>
 
             {/* Sale Model node */}

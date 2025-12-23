@@ -1,6 +1,7 @@
 "use client";
 
 import FlowNode from "./FlowNode";
+import Arrow from "./Arrow";
 
 interface GptOssSlotFillingBottomWithArrowProps {
     isActive: boolean;
@@ -11,27 +12,14 @@ export default function GptOssSlotFillingBottomWithArrow({ isActive }: GptOssSlo
         <div className={`transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-50'}`}>
             {/* SVG for arrow */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
-                {/* Elbow Arrow: GPT-OSS Slot-Filling -> User end (down then left) */}
-                <polyline
+                <Arrow
+                    type="polyline"
+                    isActive={isActive}
                     points="1930,360 1930,530 1090,530"
-                    stroke="#1a1a1a"
-                    strokeWidth="2"
-                    fill="none"
-                    markerEnd="url(#arrow)"
-                    className={isActive ? "flow-arrow" : ""}
+                    label="Final Response"
+                    labelX={1495}
+                    labelY={520}
                 />
-
-                {/* Label: "Final Response" */}
-                <text
-                    x="1495"
-                    y="520"
-                    fill="#1a1a1a"
-                    fontSize="12"
-                    fontWeight="400"
-                    textAnchor="middle"
-                >
-                    Final Response
-                </text>
             </svg>
 
             {/* GPT-OSS Slot-Filling node */}

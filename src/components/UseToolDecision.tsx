@@ -1,6 +1,7 @@
 "use client";
 
 import DecisionNode from "./DecisionNode";
+import Arrow from "./Arrow";
 
 interface UseToolDecisionProps {
     isActive: boolean;
@@ -15,49 +16,27 @@ export default function UseToolDecision({ isActive, decision }: UseToolDecisionP
         <div className={`transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-50'}`}>
             {/* SVG for arrows */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
-                {/* Arrow: use tool? -> Yes (L-shaped: up then right) */}
-                <polyline
+                <Arrow
+                    type="polyline"
+                    isActive={isActive && yesPath}
                     points="548,300 548,210 680,210"
                     stroke={isActive && yesPath ? "#22c55e" : "#1a1a1a"}
                     strokeWidth={isActive && yesPath ? "4" : "2"}
-                    fill="none"
-                    markerEnd="url(#arrow)"
-                    className={isActive && yesPath ? "flow-arrow" : ""}
+                    label="Yes"
+                    labelX={615}
+                    labelY={200}
                 />
 
-                {/* Label: "Yes" */}
-                <text
-                    x="615"
-                    y="200"
-                    fill={isActive && yesPath ? "#22c55e" : "#1a1a1a"}
-                    fontSize="12"
-                    fontWeight={isActive && yesPath ? "700" : "400"}
-                    textAnchor="middle"
-                >
-                    Yes
-                </text>
-
-                {/* Arrow: use tool? -> No (L-shaped: down then right) */}
-                <polyline
+                <Arrow
+                    type="polyline"
+                    isActive={isActive && noPath}
                     points="548,440 548,530 680,530"
                     stroke={isActive && noPath ? "#22c55e" : "#1a1a1a"}
                     strokeWidth={isActive && noPath ? "4" : "2"}
-                    fill="none"
-                    markerEnd="url(#arrow)"
-                    className={isActive && noPath ? "flow-arrow" : ""}
+                    label="No"
+                    labelX={615}
+                    labelY={545}
                 />
-
-                {/* Label: "No" */}
-                <text
-                    x="615"
-                    y="545"
-                    fill={isActive && noPath ? "#22c55e" : "#1a1a1a"}
-                    fontSize="12"
-                    fontWeight={isActive && noPath ? "700" : "400"}
-                    textAnchor="middle"
-                >
-                    No
-                </text>
             </svg>
 
             {/* Decision node: use tool? */}

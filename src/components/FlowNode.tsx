@@ -98,7 +98,7 @@ export default function FlowNode({
 
         // External labels for icons
         const labelClass =
-            "absolute -bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-[10px] font-medium text-gray-600 text-center leading-tight";
+            `absolute -bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-[10px] ${isActive ? 'font-bold' : 'font-medium'} text-gray-600 text-center leading-tight`;
 
         if (type === "user" && nodeName === "User")
             return <div className={labelClass}>User</div>;
@@ -139,7 +139,7 @@ export default function FlowNode({
             <div className={`${getNodeStyle()} z-10 relative ${isActive ? 'ring-4 ring-[#C68E42] ring-opacity-70' : ''}`}>
                 {getIcon()}
                 {type === "process" && (
-                    <span className="text-[11px] font-medium text-gray-700 block leading-tight whitespace-pre-line">
+                    <span className={`text-[11px] ${isActive ? 'font-bold' : 'font-medium'} text-gray-700 block leading-tight whitespace-pre-line`}>
                         {nodeName}
                     </span>
                 )}
