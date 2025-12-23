@@ -1,0 +1,188 @@
+[
+    {
+        "user": "chào em",
+        "asssistant": "Em chào anh chị, anh chị muốn tư vấn dịch vụ gì vậy ạ?",
+        "flow": [
+            {
+                "node_name": "User Input",
+                "input": "chào em",
+                "output": "Em chào anh chị, anh chị muốn tư vấn dịch vụ gì vậy ạ?",
+                "time": 0,
+                "reason": ""
+            },
+            {
+                "node_name": "Sale Model 1",
+                "input": "chào em",
+                "output": "Em chào anh chị, anh chị muốn tư vấn dịch vụ gì vậy ạ?",
+                "time": 15,
+                "reason": ""
+            },
+            {
+                "node_name": "use tool?",
+                "input": "Em chào anh chị, anh chị muốn tư vấn dịch vụ gì vậy ạ?",
+                "output": "False",
+                "time": 4,
+                "reason": ""
+            },
+            {
+                "node_name": "Post-process",
+                "input": "Em chào anh chị, anh chị muốn tư vấn dịch vụ gì vậy ạ?",
+                "output": "Em chào anh chị, anh chị muốn tư vấn dịch vụ gì vậy ạ?",
+                "time": 6,
+                "reason": "1. Kiểm tra chào hỏi.\n2.Kiểm tra ngôn ngữ."
+            },
+            {
+                "node_name": "User Output",
+                "input": "Em chào anh chị, anh chị muốn tư vấn dịch vụ gì vậy ạ?",
+                "output": "",
+                "time": 1,
+                "reason": ""
+            }
+        ]
+    },
+    {
+        "user": "a mún tư vấn gói net",
+        "asssistant": "Dạ em sẽ tư vấn gói giga, sky, ...",
+        "flow": [
+            {
+                "node_name": "User Input",
+                "input": "a mún tư vấn gói net",
+                "output": "Dạ em sẽ tư vấn gói giga, sky, ...",
+                "time": 0,
+                "reason": ""
+            },
+            {
+                "node_name": "Sale Model 1",
+                "input": "a mún tư vấn gói net",
+                "output": "<tool_call>abc</tool_call>",
+                "time": 15,
+                "reason": ""
+            },
+            {
+                "node_name": "use tool?",
+                "input": "<tool_call>abc</tool_call>",
+                "output": "True",
+                "time": 4,
+                "reason": ""
+            },
+            {
+                "node_name": "Parse Tool_name/arguments",
+                "input": "<tool_call>abc</tool_call>",
+                "output": "name=describe_product, args=['Internet']",
+                "time": 10,
+                "reason": ""
+            },
+            {
+                "node_name": "GPT-OSS Dọuble-check",
+                "input": "a mún tư vấn gói net + Kịch bản",
+                "output": "JSON output",
+                "time": 8,
+                "reason": ""
+            },
+            {
+                "node_name": "confirm use tool?",
+                "input": "JSON output",
+                "output": "True",
+                "time": 3,
+                "reason": "Điều kiện đầy đủ nên xác nhận gọi tool"
+            },
+            {
+                "node_name": "GPT-OSS Slot-Filling",
+                "input": "JSON output arguments + Danh sách sản phẩm",
+                "output": "Internet cá nhân và doanh nghiệp",
+                "time": 18,
+                "reason": ""
+            },
+            {
+                "node_name": "Update Argument",
+                "input": "Internet cá nhân và doanh nghiệp + JSON output arguments",
+                "output": "Args chính xác",
+                "time": 2,
+                "reason": ""
+            },
+            {
+                "node_name": "Tool Resource",
+                "input": "Args",
+                "output": "Output",
+                "time": 20,
+                "reason": ""
+            },
+            {
+                "node_name": "GPT-OSS Final",
+                "input": "Output + Nhu cầu",
+                "output": "Output",
+                "time": 2,
+                "reason": ""
+            },
+            {
+                "node_name": "User Output",
+                "input": "",
+                "output": "Output",
+                "time": 1,
+                "reason": ""
+            }
+        ]
+    },
+    {
+        "user": "a mún tư vấn gói net",
+        "asssistant": "Dạ em sẽ tư vấn gói giga, sky, ...",
+        "flow": [
+            {
+                "node_name": "User Input",
+                "input": "a mún tư vấn gói net",
+                "output": "Dạ em sẽ tư vấn gói giga, sky, ...",
+                "time": 0,
+                "reason": ""
+            },
+            {
+                "node_name": "Sale Model 1",
+                "input": "a mún tư vấn gói net",
+                "output": "<tool_call>abc</tool_call>",
+                "time": 15,
+                "reason": ""
+            },
+            {
+                "node_name": "use tool?",
+                "input": "<tool_call>abc</tool_call>",
+                "output": "True",
+                "time": 4,
+                "reason": ""
+            },
+            {
+                "node_name": "Parse Tool_name/arguments",
+                "input": "<tool_call>abc</tool_call>",
+                "output": "name=describe_product, args=['Internet']",
+                "time": 10,
+                "reason": ""
+            },
+            {
+                "node_name": "GPT-OSS Dọuble-check",
+                "input": "a mún tư vấn gói net + Kịch bản",
+                "output": "JSON output",
+                "time": 8,
+                "reason": ""
+            },
+            {
+                "node_name": "confirm use tool?",
+                "input": "JSON output",
+                "output": "False",
+                "time": 3,
+                "reason": ""
+            },
+            {
+                "node_name": "Sale model 2",
+                "input": "user mesage + ko tool schema",
+                "output": "anh chị vui lòng cho e xin thông tin địa chỉ",
+                "time": 18,
+                "reason": ""
+            },
+            {
+                "node_name": "User Output",
+                "input": "",
+                "output": "Output",
+                "time": 1,
+                "reason": ""
+            }
+        ]
+    }
+]
