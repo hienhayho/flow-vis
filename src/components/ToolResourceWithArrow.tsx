@@ -20,6 +20,7 @@ export default function ToolResourceWithArrow({ isActive }: ToolResourceWithArro
                     stroke="#1a1a1a"
                     strokeWidth="2"
                     markerEnd="url(#arrow)"
+                    className={isActive ? "flow-arrow" : ""}
                 />
 
                 {/* Label: "Tool Response" */}

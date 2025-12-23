@@ -18,6 +18,7 @@ export default function SaleModelBottomWithArrow({ isActive }: SaleModelBottomWi
                     strokeWidth="2"
                     fill="none"
                     markerEnd="url(#arrow)"
+                    className={isActive ? "flow-arrow" : ""}
                 />
 
                 {/* Label: "Final Response" */}

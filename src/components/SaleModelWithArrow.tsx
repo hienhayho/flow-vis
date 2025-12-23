@@ -20,6 +20,7 @@ export default function SaleModelWithArrow({ isActive }: SaleModelWithArrowProps
                     stroke="#1a1a1a"
                     strokeWidth="2"
                     markerEnd="url(#arrow)"
+                    className={isActive ? "flow-arrow" : ""}
                 />
 
                 {/* Label: "2. message" */}

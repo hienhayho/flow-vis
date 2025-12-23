@@ -18,6 +18,7 @@ export default function GptOssSlotFillingBottomWithArrow({ isActive }: GptOssSlo
                     strokeWidth="2"
                     fill="none"
                     markerEnd="url(#arrow)"
+                    className={isActive ? "flow-arrow" : ""}
                 />
 
                 {/* Label: "Final Response" */}

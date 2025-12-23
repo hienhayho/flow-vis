@@ -41,12 +41,20 @@ export default function Home() {
             </div>
           )}
           {conversationData && (
-            <button
-              onClick={() => setConversationData(null)}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Upload New File
-            </button>
+            <div className="flex gap-4">
+              <button
+                onClick={() => setConversationData(null)}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Upload New File
+              </button>
+              <button
+                onClick={loadSampleData}
+                className="px-6 py-2 bg-[#C68E42] text-white rounded-lg hover:bg-[#B07A38] transition-colors font-medium shadow-md"
+              >
+                Load Sample Data
+              </button>
+            </div>
           )}
         </div>
 

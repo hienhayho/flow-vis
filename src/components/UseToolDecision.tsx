@@ -4,9 +4,13 @@ import DecisionNode from "./DecisionNode";
 
 interface UseToolDecisionProps {
     isActive: boolean;
+    decision?: string;
 }
 
-export default function UseToolDecision({ isActive }: UseToolDecisionProps) {
+export default function UseToolDecision({ isActive, decision }: UseToolDecisionProps) {
+    const yesPath = decision === "True";
+    const noPath = decision === "False";
+
     return (
         <div className={`transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-50'}`}>
             {/* SVG for arrows */}
@@ -14,19 +18,20 @@ export default function UseToolDecision({ isActive }: UseToolDecisionProps) {
                 {/* Arrow: use tool? -> Yes (L-shaped: up then right) */}
                 <polyline
                     points="548,300 548,210 680,210"
-                    stroke="#1a1a1a"
-                    strokeWidth="2"
+                    stroke={isActive && yesPath ? "#22c55e" : "#1a1a1a"}
+                    strokeWidth={isActive && yesPath ? "4" : "2"}
                     fill="none"
                     markerEnd="url(#arrow)"
+                    className={isActive && yesPath ? "flow-arrow" : ""}
                 />
 
                 {/* Label: "Yes" */}
                 <text
                     x="615"
                     y="200"
-                    fill="#1a1a1a"
+                    fill={isActive && yesPath ? "#22c55e" : "#1a1a1a"}
                     fontSize="12"
-                    fontWeight="400"
+                    fontWeight={isActive && yesPath ? "700" : "400"}
                     textAnchor="middle"
                 >
                     Yes
@@ -35,19 +40,20 @@ export default function UseToolDecision({ isActive }: UseToolDecisionProps) {
                 {/* Arrow: use tool? -> No (L-shaped: down then right) */}
                 <polyline
                     points="548,440 548,530 680,530"
-                    stroke="#1a1a1a"
-                    strokeWidth="2"
+                    stroke={isActive && noPath ? "#22c55e" : "#1a1a1a"}
+                    strokeWidth={isActive && noPath ? "4" : "2"}
                     fill="none"
                     markerEnd="url(#arrow)"
+                    className={isActive && noPath ? "flow-arrow" : ""}
                 />
 
                 {/* Label: "No" */}
                 <text
                     x="615"
                     y="545"
-                    fill="#1a1a1a"
+                    fill={isActive && noPath ? "#22c55e" : "#1a1a1a"}
                     fontSize="12"
-                    fontWeight="400"
+                    fontWeight={isActive && noPath ? "700" : "400"}
                     textAnchor="middle"
                 >
                     No

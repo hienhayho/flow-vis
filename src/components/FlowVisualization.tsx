@@ -47,12 +47,18 @@ const nodePositions: Record<string, number> = {
 
 export default function FlowVisualization({
     currentNodeName,
+    flowPath,
 }: FlowVisualizationProps) {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
     const isNodeActive = (nodeKey: string): boolean => {
         if (!currentNodeName) return false;
         return nodeKey === currentNodeName;
+    };
+
+    const getNodeDecision = (nodeKey: string): string | undefined => {
+        const node = flowPath.find(n => n.node_name === nodeKey);
+        return node?.output;
     };
 
     // Auto-scroll to active node
@@ -131,7 +137,10 @@ export default function FlowVisualization({
                 <SaleModelWithArrow isActive={isNodeActive("Sale Model 1")} />
 
                 {/* Use tool decision with Yes/No arrows */}
-                <UseToolDecision isActive={isNodeActive("use tool?")} />
+                <UseToolDecision
+                    isActive={isNodeActive("use tool?")}
+                    decision={getNodeDecision("use tool?")}
+                />
 
                 {/* Parse Tool with arrow */}
                 <ParseToolWithArrow isActive={isNodeActive("Parse Tool_name/arguments")} />
@@ -140,7 +149,10 @@ export default function FlowVisualization({
                 <GptOssDoubleCheckWithArrow isActive={isNodeActive("GPT-OSS Dọuble-check")} />
 
                 {/* Confirm use tool decision with Yes/No arrows */}
-                <ConfirmUseToolDecision isActive={isNodeActive("confirm use tool?")} />
+                <ConfirmUseToolDecision
+                    isActive={isNodeActive("confirm use tool?")}
+                    decision={getNodeDecision("confirm use tool?")}
+                />
 
                 {/* GPT-OSS Slot-Filling with arrow */}
                 <GptOssSlotFillingWithArrow isActive={isNodeActive("GPT-OSS Slot-Filling")} />
