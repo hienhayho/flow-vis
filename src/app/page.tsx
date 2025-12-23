@@ -9,7 +9,7 @@ import { ConversationData } from '@/types';
 
 export default function Home() {
   const [conversationData, setConversationData] = useState<ConversationData | null>(null);
-  const { messages, currentNodeName, flowPath, isAnimating } = useFlowAnimation(conversationData);
+  const { messages, currentNodeName, flowPath } = useFlowAnimation(conversationData);
 
   const loadSampleData = async () => {
     try {
@@ -73,7 +73,7 @@ export default function Home() {
 
         {/* Node Info Display - Fixed Position Outside Flow */}
         {conversationData && currentNodeName && flowPath.length > 0 && (() => {
-          const currentNode = flowPath.find((n: any) => n.node_name === currentNodeName);
+          const currentNode = flowPath.find((n) => n.node_name === currentNodeName);
           if (!currentNode) return null;
 
           return (

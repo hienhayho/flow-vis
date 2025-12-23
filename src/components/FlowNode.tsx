@@ -97,7 +97,7 @@ export default function FlowNode({
         }
 
         // External labels for icons
-        let labelClass =
+        const labelClass =
             "absolute -bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-[10px] font-medium text-gray-600 text-center leading-tight";
 
         if (type === "user" && nodeName === "User")

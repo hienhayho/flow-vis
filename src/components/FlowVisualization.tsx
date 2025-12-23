@@ -28,33 +28,31 @@ interface FlowVisualizationProps {
     flowPath: FlowNode[];
 }
 
+// Node position mapping for auto-scroll (outside component to avoid re-creation)
+const nodePositions: Record<string, number> = {
+    "User Input": 60,
+    "Sale Model 1": 280,
+    "use tool?": 500,
+    "Parse Tool_name/arguments": 690,
+    "GPT-OSS Dọuble-check": 1020,
+    "confirm use tool?": 1250,
+    "GPT-OSS Slot-Filling": 1430,
+    "Update Argument": 1610,
+    "Tool Resource": 1898,
+    "Post-process": 710,
+    "User Output": 1020,
+    "GPT-OSS Final": 1898,
+    "Sale model 2": 1458,
+};
+
 export default function FlowVisualization({
     currentNodeName,
-    flowPath,
 }: FlowVisualizationProps) {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
     const isNodeActive = (nodeKey: string): boolean => {
         if (!currentNodeName) return false;
         return nodeKey === currentNodeName;
-    };
-
-
-    // Node position mapping for auto-scroll
-    const nodePositions: Record<string, number> = {
-        "User Input": 60,
-        "Sale Model 1": 280,
-        "use tool?": 500,
-        "Parse Tool_name/arguments": 690,
-        "GPT-OSS Dọuble-check": 1020,
-        "confirm use tool?": 1250,
-        "GPT-OSS Slot-Filling": 1430,
-        "Update Argument": 1610,
-        "Tool Resource": 1898,
-        "Post-process": 710,
-        "User Output": 1020,
-        "GPT-OSS Final": 1898,
-        "Sale model 2": 1458,
     };
 
     // Auto-scroll to active node
