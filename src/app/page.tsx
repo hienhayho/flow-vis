@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowDownCircle, ArrowUpCircle, Lightbulb, Copy, Check } from 'lucide-react';
 import FileUpload from '@/components/FileUpload';
 import ChatConversation from '@/components/ChatConversation';
@@ -162,6 +162,8 @@ export default function Home() {
   const [conversationData, setConversationData] = useState<ConversationData | null>(null);
   const [selectedMessageIndex, setSelectedMessageIndex] = useState<number | null>(null);
   const [selectedNodeName, setSelectedNodeName] = useState<string | null>(null);
+  const [showSampleSelector, setShowSampleSelector] = useState(false);
+  const [availableSamples, setAvailableSamples] = useState<string[]>([]);
   const { messages, currentNodeName, flowPath } = useFlowAnimation(conversationData);
 
   // Get the active flow based on selected message
@@ -192,16 +194,67 @@ export default function Home() {
     setSelectedNodeName(nodeName);
   };
 
-  const loadSampleData = async () => {
+  const loadSampleData = async (filename: string) => {
     try {
-      const response = await fetch('/sample.json');
+      const response = await fetch(`/${filename}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${filename}`);
+      }
       const data = await response.json();
       setConversationData(data);
+      setShowSampleSelector(false);
     } catch (error) {
       console.error('Failed to load sample data:', error);
-      alert('Failed to load sample data. Please check if sample.json exists in the public folder.');
+      alert(`Failed to load ${filename}. Please check if the file exists in the public folder.`);
     }
   };
+
+  const handleLoadSampleClick = () => {
+    // Always show selector dropdown
+    setShowSampleSelector(!showSampleSelector);
+  };
+
+  // Auto-detect available JSON files in public folder
+  const detectSampleFiles = async () => {
+    try {
+      // Try to fetch a manifest file that lists available samples
+      const response = await fetch('/samples-manifest.json');
+      if (response.ok) {
+        const manifest = await response.json();
+        setAvailableSamples(manifest.files || []);
+      } else {
+        // Fallback: try common sample filenames
+        const commonSamples = ['sample.json', 'sample1.json', 'sample2.json', 'sample3.json'];
+        const available = [];
+
+        for (const filename of commonSamples) {
+          try {
+            const testResponse = await fetch(`/${filename}`, { method: 'HEAD' });
+            if (testResponse.ok) {
+              available.push(filename);
+            }
+          } catch {
+            // File doesn't exist, skip
+          }
+        }
+
+        if (available.length > 0) {
+          setAvailableSamples(available);
+        } else {
+          // Default fallback
+          setAvailableSamples(['sample.json']);
+        }
+      }
+    } catch (error) {
+      console.error('Failed to detect sample files:', error);
+      setAvailableSamples(['sample.json']);
+    }
+  };
+
+  // Detect available samples on component mount
+  useEffect(() => {
+    detectSampleFiles();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 p-6">
@@ -210,31 +263,71 @@ export default function Home() {
         <div className="mb-6">
           <h1 className="text-4xl font-bold text-gray-800 mb-4">FOXY Flow Visualization</h1>
           {!conversationData && (
-            <div className="flex gap-4 items-center">
+            <div className="flex gap-4 items-center relative">
               <FileUpload onDataLoaded={setConversationData} />
               <span className="text-gray-500 font-medium">or</span>
-              <button
-                onClick={loadSampleData}
-                className="px-6 py-2 bg-[#C68E42] text-white rounded-lg hover:bg-[#B07A38] transition-colors font-medium shadow-md"
-              >
-                Load Sample Data
-              </button>
+              <div className="relative">
+                <button
+                  onClick={handleLoadSampleClick}
+                  className="px-6 py-2 bg-[#C68E42] text-white rounded-lg hover:bg-[#B07A38] transition-colors font-medium shadow-md"
+                >
+                  Load Sample Data
+                </button>
+                {showSampleSelector && availableSamples.length > 0 && (
+                  <div className="absolute top-full mt-2 bg-white rounded-lg shadow-xl border-2 border-gray-200 z-50 min-w-[250px]">
+                    <div className="p-2">
+                      <div className="text-xs font-semibold text-gray-600 px-2 py-1 border-b border-gray-200 mb-1">
+                        Select Sample File ({availableSamples.length} available):
+                      </div>
+                      {availableSamples.map((sample) => (
+                        <button
+                          key={sample}
+                          onClick={() => loadSampleData(sample)}
+                          className="w-full text-left px-3 py-2 text-sm text-gray-700 font-medium hover:bg-[#C68E42] hover:text-white rounded transition-colors"
+                        >
+                          {sample}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           )}
           {conversationData && (
-            <div className="flex gap-4">
+            <div className="flex gap-4 relative">
               <button
                 onClick={() => setConversationData(null)}
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
                 Upload New File
               </button>
-              <button
-                onClick={loadSampleData}
-                className="px-6 py-2 bg-[#C68E42] text-white rounded-lg hover:bg-[#B07A38] transition-colors font-medium shadow-md"
-              >
-                Load Sample Data
-              </button>
+              <div className="relative">
+                <button
+                  onClick={handleLoadSampleClick}
+                  className="px-6 py-2 bg-[#C68E42] text-white rounded-lg hover:bg-[#B07A38] transition-colors font-medium shadow-md"
+                >
+                  Load Sample Data
+                </button>
+                {showSampleSelector && availableSamples.length > 0 && (
+                  <div className="absolute top-full mt-2 bg-white rounded-lg shadow-xl border-2 border-gray-200 z-50 min-w-[250px]">
+                    <div className="p-2">
+                      <div className="text-xs font-semibold text-gray-600 px-2 py-1 border-b border-gray-200 mb-1">
+                        Select Sample File ({availableSamples.length} available):
+                      </div>
+                      {availableSamples.map((sample) => (
+                        <button
+                          key={sample}
+                          onClick={() => loadSampleData(sample)}
+                          className="w-full text-left px-3 py-2 text-sm text-gray-700 font-medium hover:bg-[#C68E42] hover:text-white rounded transition-colors"
+                        >
+                          {sample}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
