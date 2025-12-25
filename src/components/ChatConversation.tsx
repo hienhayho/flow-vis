@@ -30,14 +30,14 @@ export default function ChatConversation({
 
   // Map message index to conversation turn index (user messages only)
   const getUserMessageIndex = (messageIndex: number): number | null => {
-    let userMessageCount = -1; // Start at -1 so first increment gives 0
+    let userMessageCount = 0;
     for (let i = 0; i <= messageIndex; i++) {
       if (messages[i]?.role === 'user') {
-        userMessageCount++; // Increment first
         if (i === messageIndex) {
           console.log('Mapping message index', messageIndex, 'to turn index', userMessageCount);
           return userMessageCount;
         }
+        userMessageCount++;
       }
     }
     return null;
