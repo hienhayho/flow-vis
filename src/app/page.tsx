@@ -172,11 +172,17 @@ export default function Home() {
   // Display either selected node or current animated node
   const displayNodeName = selectedNodeName || currentNodeName;
 
-  // Handle message selection
+  // Handle message selection (toggle on/off)
   const handleMessageSelect = (index: number) => {
     console.log('Message selected:', index);
-    setSelectedMessageIndex(index);
-    setSelectedNodeName(null); // Clear node selection when changing messages
+    // Toggle: if same message is clicked again, deselect it
+    if (selectedMessageIndex === index) {
+      setSelectedMessageIndex(null);
+      setSelectedNodeName(null);
+    } else {
+      setSelectedMessageIndex(index);
+      setSelectedNodeName(null); // Clear node selection when changing messages
+    }
   };
 
   // Handle node selection with debugging
@@ -258,6 +264,7 @@ export default function Home() {
                   flowPath={activeFlow}
                   selectedNodeName={selectedNodeName}
                   onNodeSelect={handleNodeSelect}
+                  selectedMessageIndex={selectedMessageIndex}
                 />
               </div>
             </div>

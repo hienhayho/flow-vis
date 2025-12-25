@@ -28,6 +28,7 @@ interface FlowVisualizationProps {
     flowPath: FlowNode[];
     selectedNodeName: string | null;
     onNodeSelect: (nodeName: string) => void;
+    selectedMessageIndex: number | null;
 }
 
 // Node position mapping for auto-scroll (outside component to avoid re-creation)
@@ -52,10 +53,17 @@ export default function FlowVisualization({
     flowPath,
     selectedNodeName,
     onNodeSelect,
+    selectedMessageIndex,
 }: FlowVisualizationProps) {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
     const isNodeActive = (nodeKey: string): boolean => {
+        // If a message is selected, show all nodes in that flow as active
+        if (selectedMessageIndex !== null) {
+            const nodeExists = flowPath.some(n => n.node_name === nodeKey);
+            return nodeExists;
+        }
+
         // Selected node takes priority, then animated current node
         if (selectedNodeName) {
             return nodeKey === selectedNodeName;
