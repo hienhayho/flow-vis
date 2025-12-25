@@ -5,9 +5,10 @@ import Arrow from "./Arrow";
 
 interface PostProcessWithArrowProps {
     isActive: boolean;
+    onNodeClick: () => void;
 }
 
-export default function PostProcessWithArrow({ isActive }: PostProcessWithArrowProps) {
+export default function PostProcessWithArrow({ isActive, onNodeClick }: PostProcessWithArrowProps) {
     return (
         <div className={`transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-50'}`}>
             {/* SVG for arrow */}
@@ -31,6 +32,7 @@ export default function PostProcessWithArrow({ isActive }: PostProcessWithArrowP
                 type="process"
                 isActive={isActive}
                 position={{ x: 710, y: 512 }}
+                onClick={onNodeClick}
             />
         </div>
     );

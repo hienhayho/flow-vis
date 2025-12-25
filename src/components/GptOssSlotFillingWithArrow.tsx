@@ -5,9 +5,10 @@ import Arrow from "./Arrow";
 
 interface GptOssSlotFillingWithArrowProps {
     isActive: boolean;
+    onNodeClick: () => void;
 }
 
-export default function GptOssSlotFillingWithArrow({ isActive }: GptOssSlotFillingWithArrowProps) {
+export default function GptOssSlotFillingWithArrow({ isActive, onNodeClick }: GptOssSlotFillingWithArrowProps) {
     return (
         <div className={`transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-50'}`}>
             {/* SVG for arrow */}
@@ -29,6 +30,7 @@ Slot-Filling"
                 type="gpt-oss"
                 isActive={isActive}
                 position={{ x: 1430, y: 28 }}
+                onClick={onNodeClick}
             />
         </div>
     );

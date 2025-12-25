@@ -26,6 +26,8 @@ interface FlowNode {
 interface FlowVisualizationProps {
     currentNodeName: string | null;
     flowPath: FlowNode[];
+    selectedNodeName: string | null;
+    onNodeSelect: (nodeName: string) => void;
 }
 
 // Node position mapping for auto-scroll (outside component to avoid re-creation)
@@ -48,12 +50,24 @@ const nodePositions: Record<string, number> = {
 export default function FlowVisualization({
     currentNodeName,
     flowPath,
+    selectedNodeName,
+    onNodeSelect,
 }: FlowVisualizationProps) {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
     const isNodeActive = (nodeKey: string): boolean => {
-        if (!currentNodeName) return false;
-        return nodeKey === currentNodeName;
+        // Selected node takes priority, then animated current node
+        if (selectedNodeName) {
+            return nodeKey === selectedNodeName;
+        }
+        if (currentNodeName) {
+            return nodeKey === currentNodeName;
+        }
+        return false;
+    };
+
+    const isNodeSelected = (nodeKey: string): boolean => {
+        return selectedNodeName === nodeKey;
     };
 
     const getNodeDecision = (nodeKey: string): string | undefined => {
@@ -131,49 +145,84 @@ export default function FlowVisualization({
                 </svg>
 
                 {/* User with arrow */}
-                <UserWithArrow isActive={isNodeActive("User Input")} />
+                <UserWithArrow
+                    isActive={isNodeActive("User Input")}
+                    onNodeClick={() => onNodeSelect("User Input")}
+                />
 
                 {/* Sale Model with arrow */}
-                <SaleModelWithArrow isActive={isNodeActive("Sale Model 1")} />
+                <SaleModelWithArrow
+                    isActive={isNodeActive("Sale Model 1")}
+                    onNodeClick={() => onNodeSelect("Sale Model 1")}
+                />
 
                 {/* Use tool decision with Yes/No arrows */}
                 <UseToolDecision
                     isActive={isNodeActive("use tool?")}
                     decision={getNodeDecision("use tool?")}
+                    onNodeClick={() => onNodeSelect("use tool?")}
                 />
 
                 {/* Parse Tool with arrow */}
-                <ParseToolWithArrow isActive={isNodeActive("Parse Tool_name/arguments")} />
+                <ParseToolWithArrow
+                    isActive={isNodeActive("Parse Tool_name/arguments")}
+                    onNodeClick={() => onNodeSelect("Parse Tool_name/arguments")}
+                />
 
                 {/* GPT-OSS Double-Check with arrow */}
-                <GptOssDoubleCheckWithArrow isActive={isNodeActive("GPT-OSS Dọuble-check")} />
+                <GptOssDoubleCheckWithArrow
+                    isActive={isNodeActive("GPT-OSS Dọuble-check")}
+                    onNodeClick={() => onNodeSelect("GPT-OSS Dọuble-check")}
+                />
 
                 {/* Confirm use tool decision with Yes/No arrows */}
                 <ConfirmUseToolDecision
                     isActive={isNodeActive("confirm use tool?")}
                     decision={getNodeDecision("confirm use tool?")}
+                    onNodeClick={() => onNodeSelect("confirm use tool?")}
                 />
 
                 {/* GPT-OSS Slot-Filling with arrow */}
-                <GptOssSlotFillingWithArrow isActive={isNodeActive("GPT-OSS Slot-Filling")} />
+                <GptOssSlotFillingWithArrow
+                    isActive={isNodeActive("GPT-OSS Slot-Filling")}
+                    onNodeClick={() => onNodeSelect("GPT-OSS Slot-Filling")}
+                />
 
                 {/* Update Arguments with arrow */}
-                <UpdateArgumentsWithArrow isActive={isNodeActive("Update Argument")} />
+                <UpdateArgumentsWithArrow
+                    isActive={isNodeActive("Update Argument")}
+                    onNodeClick={() => onNodeSelect("Update Argument")}
+                />
 
                 {/* Tool Resource with arrow */}
-                <ToolResourceWithArrow isActive={isNodeActive("Tool Resource")} />
+                <ToolResourceWithArrow
+                    isActive={isNodeActive("Tool Resource")}
+                    onNodeClick={() => onNodeSelect("Tool Resource")}
+                />
 
                 {/* Post-process with arrow */}
-                <PostProcessWithArrow isActive={isNodeActive("Post-process")} />
+                <PostProcessWithArrow
+                    isActive={isNodeActive("Post-process")}
+                    onNodeClick={() => onNodeSelect("Post-process")}
+                />
 
                 {/* User end node */}
-                <UserEnd isActive={isNodeActive("User Output")} />
+                <UserEnd
+                    isActive={isNodeActive("User Output")}
+                    onNodeClick={() => onNodeSelect("User Output")}
+                />
 
                 {/* GPT-OSS Slot-Filling bottom with arrow */}
-                <GptOssSlotFillingBottomWithArrow isActive={isNodeActive("GPT-OSS Final")} />
+                <GptOssSlotFillingBottomWithArrow
+                    isActive={isNodeActive("GPT-OSS Final")}
+                    onNodeClick={() => onNodeSelect("GPT-OSS Final")}
+                />
 
                 {/* Sale Model bottom with arrow */}
-                <SaleModelBottomWithArrow isActive={isNodeActive("Sale model 2")} />
+                <SaleModelBottomWithArrow
+                    isActive={isNodeActive("Sale model 2")}
+                    onNodeClick={() => onNodeSelect("Sale model 2")}
+                />
 
             </div>
         </div>

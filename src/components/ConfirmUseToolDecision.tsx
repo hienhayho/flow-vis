@@ -6,9 +6,10 @@ import Arrow from "./Arrow";
 interface ConfirmUseToolDecisionProps {
     isActive: boolean;
     decision?: string;
+    onNodeClick: () => void;
 }
 
-export default function ConfirmUseToolDecision({ isActive, decision }: ConfirmUseToolDecisionProps) {
+export default function ConfirmUseToolDecision({ isActive, decision, onNodeClick }: ConfirmUseToolDecisionProps) {
     const yesPath = decision === "True";
     const noPath = decision === "False";
 
@@ -45,6 +46,7 @@ export default function ConfirmUseToolDecision({ isActive, decision }: ConfirmUs
 use tool?"
                 isActive={isActive}
                 position={{ x: 1250, y: 162 }}
+                onClick={onNodeClick}
             />
         </div>
     );

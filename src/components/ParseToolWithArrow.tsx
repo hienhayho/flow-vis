@@ -5,9 +5,10 @@ import Arrow from "./Arrow";
 
 interface ParseToolWithArrowProps {
     isActive: boolean;
+    onNodeClick: () => void;
 }
 
-export default function ParseToolWithArrow({ isActive }: ParseToolWithArrowProps) {
+export default function ParseToolWithArrow({ isActive, onNodeClick }: ParseToolWithArrowProps) {
     return (
         <div className={`transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-50'}`}>
             {/* SVG for arrow */}
@@ -32,6 +33,7 @@ Tool name/arguments"
                 type="process"
                 isActive={isActive}
                 position={{ x: 690, y: 190 }}
+                onClick={onNodeClick}
             />
         </div>
     );

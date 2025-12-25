@@ -6,9 +6,10 @@ import Arrow from "./Arrow";
 interface UseToolDecisionProps {
     isActive: boolean;
     decision?: string;
+    onNodeClick: () => void;
 }
 
-export default function UseToolDecision({ isActive, decision }: UseToolDecisionProps) {
+export default function UseToolDecision({ isActive, decision, onNodeClick }: UseToolDecisionProps) {
     const yesPath = decision === "True";
     const noPath = decision === "False";
 
@@ -44,6 +45,7 @@ export default function UseToolDecision({ isActive, decision }: UseToolDecisionP
                 nodeName="use tool?"
                 isActive={isActive}
                 position={{ x: 500, y: 322 }}
+                onClick={onNodeClick}
             />
         </div>
     );

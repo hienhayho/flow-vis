@@ -1,188 +1,291 @@
 [
-    {
-        "user": "chào em",
-        "asssistant": "Em chào anh chị, anh chị muốn tư vấn dịch vụ gì vậy ạ?",
-        "flow": [
-            {
-                "node_name": "User Input",
-                "input": "chào em",
-                "output": "Em chào anh chị, anh chị muốn tư vấn dịch vụ gì vậy ạ?",
-                "time": 0,
-                "reason": ""
-            },
-            {
-                "node_name": "Sale Model 1",
-                "input": "chào em",
-                "output": "Em chào anh chị, anh chị muốn tư vấn dịch vụ gì vậy ạ?",
-                "time": 15,
-                "reason": ""
-            },
-            {
-                "node_name": "use tool?",
-                "input": "Em chào anh chị, anh chị muốn tư vấn dịch vụ gì vậy ạ?",
-                "output": "False",
-                "time": 4,
-                "reason": ""
-            },
-            {
-                "node_name": "Post-process",
-                "input": "Em chào anh chị, anh chị muốn tư vấn dịch vụ gì vậy ạ?",
-                "output": "Em chào anh chị, anh chị muốn tư vấn dịch vụ gì vậy ạ?",
-                "time": 6,
-                "reason": "1. Kiểm tra chào hỏi.\n2.Kiểm tra ngôn ngữ."
-            },
-            {
-                "node_name": "User Output",
-                "input": "Em chào anh chị, anh chị muốn tư vấn dịch vụ gì vậy ạ?",
-                "output": "",
-                "time": 1,
-                "reason": ""
-            }
-        ]
-    },
-    {
-        "user": "a mún tư vấn gói net",
-        "asssistant": "Dạ em sẽ tư vấn gói giga, sky, ...",
-        "flow": [
-            {
-                "node_name": "User Input",
-                "input": "a mún tư vấn gói net",
-                "output": "Dạ em sẽ tư vấn gói giga, sky, ...",
-                "time": 0,
-                "reason": ""
-            },
-            {
-                "node_name": "Sale Model 1",
-                "input": "a mún tư vấn gói net",
-                "output": "<tool_call>abc</tool_call>",
-                "time": 15,
-                "reason": ""
-            },
-            {
-                "node_name": "use tool?",
-                "input": "<tool_call>abc</tool_call>",
-                "output": "True",
-                "time": 4,
-                "reason": ""
-            },
-            {
-                "node_name": "Parse Tool_name/arguments",
-                "input": "<tool_call>abc</tool_call>",
-                "output": "name=describe_product, args=['Internet']",
-                "time": 10,
-                "reason": ""
-            },
-            {
-                "node_name": "GPT-OSS Dọuble-check",
-                "input": "a mún tư vấn gói net + Kịch bản",
-                "output": "JSON output",
-                "time": 8,
-                "reason": ""
-            },
-            {
-                "node_name": "confirm use tool?",
-                "input": "JSON output",
-                "output": "True",
-                "time": 3,
-                "reason": "Điều kiện đầy đủ nên xác nhận gọi tool"
-            },
-            {
-                "node_name": "GPT-OSS Slot-Filling",
-                "input": "JSON output arguments + Danh sách sản phẩm",
-                "output": "Internet cá nhân và doanh nghiệp",
-                "time": 18,
-                "reason": ""
-            },
-            {
-                "node_name": "Update Argument",
-                "input": "Internet cá nhân và doanh nghiệp + JSON output arguments",
-                "output": "Args chính xác",
-                "time": 2,
-                "reason": ""
-            },
-            {
-                "node_name": "Tool Resource",
-                "input": "Args",
-                "output": "Output",
-                "time": 20,
-                "reason": ""
-            },
-            {
-                "node_name": "GPT-OSS Final",
-                "input": "Output + Nhu cầu",
-                "output": "Output",
-                "time": 2,
-                "reason": ""
-            },
-            {
-                "node_name": "User Output",
-                "input": "",
-                "output": "Output",
-                "time": 1,
-                "reason": ""
-            }
-        ]
-    },
-    {
-        "user": "a mún tư vấn gói net",
-        "asssistant": "Dạ em sẽ tư vấn gói giga, sky, ...",
-        "flow": [
-            {
-                "node_name": "User Input",
-                "input": "a mún tư vấn gói net",
-                "output": "Dạ em sẽ tư vấn gói giga, sky, ...",
-                "time": 0,
-                "reason": ""
-            },
-            {
-                "node_name": "Sale Model 1",
-                "input": "a mún tư vấn gói net",
-                "output": "<tool_call>abc</tool_call>",
-                "time": 15,
-                "reason": ""
-            },
-            {
-                "node_name": "use tool?",
-                "input": "<tool_call>abc</tool_call>",
-                "output": "True",
-                "time": 4,
-                "reason": ""
-            },
-            {
-                "node_name": "Parse Tool_name/arguments",
-                "input": "<tool_call>abc</tool_call>",
-                "output": "name=describe_product, args=['Internet']",
-                "time": 10,
-                "reason": ""
-            },
-            {
-                "node_name": "GPT-OSS Dọuble-check",
-                "input": "a mún tư vấn gói net + Kịch bản",
-                "output": "JSON output",
-                "time": 8,
-                "reason": ""
-            },
-            {
-                "node_name": "confirm use tool?",
-                "input": "JSON output",
-                "output": "False",
-                "time": 3,
-                "reason": ""
-            },
-            {
-                "node_name": "Sale model 2",
-                "input": "user mesage + ko tool schema",
-                "output": "anh chị vui lòng cho e xin thông tin địa chỉ",
-                "time": 18,
-                "reason": ""
-            },
-            {
-                "node_name": "User Output",
-                "input": "",
-                "output": "Output",
-                "time": 1,
-                "reason": ""
-            }
-        ]
-    }
+  {
+    "user": "chào em",
+    "asssistant": "Dạ, em là chuyên viên tư vấn của công ty FPT Telecom. Anh/chị đang muốn tư vấn dịch vụ nào ạ?",
+    "flow": [
+      {
+        "node_name": "User Input",
+        "input": "chào em",
+        "output": "Dạ, em là chuyên viên tư vấn của công ty FPT Telecom. Anh/chị đang muốn tư vấn dịch vụ nào ạ?",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "Sale Model 1",
+        "input": "chào em",
+        "output": "<address>None</address>\n<phone>None</phone>\n<device_number>None</device_number>\n<intent_of_user>Chào hỏi</intent_of_user>\n<name>None</name>\n<contract_id>None</contract_id>\n<think>1. Intent Classification: Chào hỏi và bắt đầu tương tác.2. Slot Extraction: None3. Prerequisite Check: Cần hỏi biết khách muốn tư vấn hay hỗ trợ gì.4. Decision & Tool Selection: Không cần gọi tool.5. Tool Invocation: None6. Result Interpretation: None7. Response Planning: Do CONTEXTUAL MEMORY chưa khởi tạo, tôi sẽ hỏi người dùng mục đích muốn tư vấn hay hỗ trợ vấn đề gì.8. Generate Utterance: Chào anh/chị ạ, em có thể giúp anh/chị tư vấn hoặc hỗ trợ vấn đề gì hôm nay ạ?</think>Chào anh/chị ạ, em có thể giúp anh/chị tư vấn hoặc hỗ trợ vấn đề gì hôm nay ạ?",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "use tool?",
+        "input": "<address>None</address>\n<phone>None</phone>\n<device_number>None</device_number>\n<intent_of_user>Chào hỏi</intent_of_user>\n<name>None</name>\n<contract_id>None</contract_id>\n<think>1. Intent Classification: Chào hỏi và bắt đầu tương tác.2. Slot Extraction: None3. Prerequisite Check: Cần hỏi biết khách muốn tư vấn hay hỗ trợ gì.4. Decision & Tool Selection: Không cần gọi tool.5. Tool Invocation: None6. Result Interpretation: None7. Response Planning: Do CONTEXTUAL MEMORY chưa khởi tạo, tôi sẽ hỏi người dùng mục đích muốn tư vấn hay hỗ trợ vấn đề gì.8. Generate Utterance: Chào anh/chị ạ, em có thể giúp anh/chị tư vấn hoặc hỗ trợ vấn đề gì hôm nay ạ?</think>Chào anh/chị ạ, em có thể giúp anh/chị tư vấn hoặc hỗ trợ vấn đề gì hôm nay ạ?",
+        "output": "False",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "Post-process",
+        "input": "<address>None</address>\n<phone>None</phone>\n<device_number>None</device_number>\n<intent_of_user>Chào hỏi</intent_of_user>\n<name>None</name>\n<contract_id>None</contract_id>\n<think>1. Intent Classification: Chào hỏi và bắt đầu tương tác.2. Slot Extraction: None3. Prerequisite Check: Cần hỏi biết khách muốn tư vấn hay hỗ trợ gì.4. Decision & Tool Selection: Không cần gọi tool.5. Tool Invocation: None6. Result Interpretation: None7. Response Planning: Do CONTEXTUAL MEMORY chưa khởi tạo, tôi sẽ hỏi người dùng mục đích muốn tư vấn hay hỗ trợ vấn đề gì.8. Generate Utterance: Chào anh/chị ạ, em có thể giúp anh/chị tư vấn hoặc hỗ trợ vấn đề gì hôm nay ạ?</think>Chào anh/chị ạ, em có thể giúp anh/chị tư vấn hoặc hỗ trợ vấn đề gì hôm nay ạ?",
+        "output": "Dạ, em là chuyên viên tư vấn của công ty FPT Telecom. Anh/chị đang muốn tư vấn dịch vụ nào ạ?",
+        "time":20,
+        "reason": "1. Kiểm tra nội dung.\n2.Kiểm tra ngôn ngữ."
+      },
+      {
+        "node_name": "User Output",
+        "input": "Dạ, em là chuyên viên tư vấn của công ty FPT Telecom. Anh/chị đang muốn tư vấn dịch vụ nào ạ?",
+        "output": "",
+        "time":20,
+        "reason": ""
+      }
+    ]
+  },
+  {
+    "user": "a mún tư vấn camera",
+    "asssistant": "Dạ vâng, em sẽ tư vấn cho anh/chị. Anh/chị mún lắp camera trong nhà hay ngoài trời?",
+    "flow": [
+      {
+        "node_name": "User Input",
+        "input": "a mún tư vấn camera",
+        "output": "Dạ vâng, em sẽ tư vấn cho anh/chị. Anh/chị mún lắp camera trong nhà hay ngoài trời?",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "Sale Model 1",
+        "input": "a mún tư vấn camera",
+        "output": "<address>None</address>\n<phone>None</phone>\n<device_number>None</device_number>\n<intent_of_user>Tư vấn camera</intent_of_user>\n<name>None</name>\n<contract_id>None</contract_id>\n<think>1. Intent Classification: Khách hàng muốn tư vấn sản phẩm camera.2. Slot Extraction: product=camera3. Prerequisite Check: Cần hỏi thêm: vị trí lắp đặt (trong nhà hay ngoài trời), nhu cầu cụ thể, địa chỉ để báo giá.4. Decision & Tool Selection: Chưa gọi tool, lưu lại thông tin để tư vấn tiếp.5. Tool Invocation: None6. Result Interpretation: None7. Response Planning: Kiểm tra trong hội thoại, khách chỉ mới nói muốn tư vấn camera, chưa cho biết chi tiết nhu cầu và địa chỉ. Cần hỏi loại camera (trong nhà hay ngoài trời) và địa chỉ lắp đặt để tư vấn chính xác.8. Generate Utterance: Dạ, anh/chị muốn lắp camera trong nhà hay ngoài trời ạ? Và anh/chị có thể cho em địa chỉ lắp đặt được không ạ?</think>Dạ vâng, em sẽ tư vấn cho anh/chị nhé. Anh/chị mún lắp camera trong nhà hay ngoài trời?",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "use tool?",
+        "input": "<address>None</address>\n<phone>None</phone>\n<device_number>None</device_number>\n<intent_of_user>Tư vấn camera</intent_of_user>\n<name>None</name>\n<contract_id>None</contract_id>\n<think>1. Intent Classification: Khách hàng muốn tư vấn sản phẩm camera.2. Slot Extraction: product=camera3. Prerequisite Check: Cần hỏi thêm: vị trí lắp đặt (trong nhà hay ngoài trời), nhu cầu cụ thể, địa chỉ để báo giá.4. Decision & Tool Selection: Chưa gọi tool, lưu lại thông tin để tư vấn tiếp.5. Tool Invocation: None6. Result Interpretation: None7. Response Planning: Kiểm tra trong hội thoại, khách chỉ mới nói muốn tư vấn camera, chưa cho biết chi tiết nhu cầu và địa chỉ. Cần hỏi loại camera (trong nhà hay ngoài trời) và địa chỉ lắp đặt để tư vấn chính xác.8. Generate Utterance: Dạ, anh/chị muốn lắp camera trong nhà hay ngoài trời ạ? Và anh/chị có thể cho em địa chỉ lắp đặt được không ạ?</think>Dạ vâng, em sẽ tư vấn cho anh/chị nhé. Anh/chị mún lắp camera trong nhà hay ngoài trời?",
+        "output": "False",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "Post-process",
+        "input": "<address>None</address>\n<phone>None</phone>\n<device_number>None</device_number>\n<intent_of_user>Tư vấn camera</intent_of_user>\n<name>None</name>\n<contract_id>None</contract_id>\n<think>1. Intent Classification: Khách hàng muốn tư vấn sản phẩm camera.2. Slot Extraction: product=camera3. Prerequisite Check: Cần hỏi thêm: vị trí lắp đặt (trong nhà hay ngoài trời), nhu cầu cụ thể, địa chỉ để báo giá.4. Decision & Tool Selection: Chưa gọi tool, lưu lại thông tin để tư vấn tiếp.5. Tool Invocation: None6. Result Interpretation: None7. Response Planning: Kiểm tra trong hội thoại, khách chỉ mới nói muốn tư vấn camera, chưa cho biết chi tiết nhu cầu và địa chỉ. Cần hỏi loại camera (trong nhà hay ngoài trời) và địa chỉ lắp đặt để tư vấn chính xác.8. Generate Utterance: Dạ, anh/chị muốn lắp camera trong nhà hay ngoài trời ạ? Và anh/chị có thể cho em địa chỉ lắp đặt được không ạ?</think>Dạ vâng, em sẽ tư vấn cho anh/chị nhé. Anh/chị mún lắp camera trong nhà hay ngoài trời?",
+        "output": "Dạ vâng, em sẽ tư vấn cho anh/chị. Anh/chị mún lắp camera trong nhà hay ngoài trời?",
+        "time":20,
+        "reason": "1. Kiểm tra nội dung.\n2.Kiểm tra ngôn ngữ."
+      },
+      {
+        "node_name": "User Output",
+        "input": "Dạ vâng, em sẽ tư vấn cho anh/chị. Anh/chị mún lắp camera trong nhà hay ngoài trời?",
+        "output": "",
+        "time":20,
+        "reason": ""
+      }
+    ]
+  },
+  {
+    "user": "trong nhà",
+    "asssistant": "Dạ, anh/chị vui lòng cho em cung cấp địa chỉ để em kiểm tra gói phù hợp và báo giá nhé. Nhà anh/chị là nhà riêng hay chung cư ạ?",
+    "flow": [
+      {
+        "node_name": "User Input",
+        "input": "a mún tư vấn camera",
+        "output": "Dạ, anh/chị vui lòng cho em cung cấp địa chỉ để em kiểm tra gói phù hợp và báo giá nhé. Nhà anh/chị là nhà riêng hay chung cư ạ?",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "Sale Model 1",
+        "input": "a mún tư vấn camera",
+        "output": "<address>None</address>\n<phone>None</phone>\n<device_number>None</device_number>\n<intent_of_user>Tư vấn camera trong nhà</intent_of_user>\n<name>Nguyễn Văn A</name>\n<contract_id>None</contract_id>\n<think>1. Intent Classification: Tư vấn camera trong nhà.2. Slot Extraction: location=trong nhà3. Prerequisite Check: Cần hỏi thêm địa chỉ lắp đặt để tư vấn sản phẩm phù hợp.4. Decision & Tool Selection: Chưa gọi tool.5. Tool Invocation: None6. Result Interpretation: None7. Response Planning: Kiểm tra trong hội thoại, đã có thông tin vị trí lắp camera trong nhà. Cần hỏi thêm địa chỉ lắp đặt để tư vấn sản phẩm phù hợp và báo giá chính xác.8. Generate Utterance: Anh/chị vui lòng cho em biết địa chỉ lắp đặt camera được không ạ?</think>Dạ, anh/chị vui lòng cho em xin địa chỉ để em kiểm tra gói phù hợp và báo giá nhé. Nhà anh/chị là nhà riêng hay chung cư ạ?",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "use tool?",
+        "input": "<address>None</address>\n<phone>None</phone>\n<device_number>None</device_number>\n<intent_of_user>Tư vấn camera trong nhà</intent_of_user>\n<name>Nguyễn Văn A</name>\n<contract_id>None</contract_id>\n<think>1. Intent Classification: Tư vấn camera trong nhà.2. Slot Extraction: location=trong nhà3. Prerequisite Check: Cần hỏi thêm địa chỉ lắp đặt để tư vấn sản phẩm phù hợp.4. Decision & Tool Selection: Chưa gọi tool.5. Tool Invocation: None6. Result Interpretation: None7. Response Planning: Kiểm tra trong hội thoại, đã có thông tin vị trí lắp camera trong nhà. Cần hỏi thêm địa chỉ lắp đặt để tư vấn sản phẩm phù hợp và báo giá chính xác.8. Generate Utterance: Anh/chị vui lòng cho em biết địa chỉ lắp đặt camera được không ạ?</think>Dạ, anh/chị vui lòng cho em xin địa chỉ để em kiểm tra gói phù hợp và báo giá nhé. Nhà anh/chị là nhà riêng hay chung cư ạ?",
+        "output": "False",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "Post-process",
+        "input": "<address>None</address>\n<phone>None</phone>\n<device_number>None</device_number>\n<intent_of_user>Tư vấn camera trong nhà</intent_of_user>\n<name>Nguyễn Văn A</name>\n<contract_id>None</contract_id>\n<think>1. Intent Classification: Tư vấn camera trong nhà.2. Slot Extraction: location=trong nhà3. Prerequisite Check: Cần hỏi thêm địa chỉ lắp đặt để tư vấn sản phẩm phù hợp.4. Decision & Tool Selection: Chưa gọi tool.5. Tool Invocation: None6. Result Interpretation: None7. Response Planning: Kiểm tra trong hội thoại, đã có thông tin vị trí lắp camera trong nhà. Cần hỏi thêm địa chỉ lắp đặt để tư vấn sản phẩm phù hợp và báo giá chính xác.8. Generate Utterance: Anh/chị vui lòng cho em biết địa chỉ lắp đặt camera được không ạ?</think>Dạ, anh/chị vui lòng cho em xin địa chỉ để em kiểm tra gói phù hợp và báo giá nhé. Nhà anh/chị là nhà riêng hay chung cư ạ?",
+        "output": "Dạ, anh/chị vui lòng cho em cung cấp địa chỉ để em kiểm tra gói phù hợp và báo giá nhé. Nhà anh/chị là nhà riêng hay chung cư ạ?",
+        "time":20,
+        "reason": "1. Kiểm tra nội dung.\n2.Kiểm tra ngôn ngữ."
+      },
+      {
+        "node_name": "User Output",
+        "input": "Dạ, anh/chị vui lòng cho em cung cấp địa chỉ để em kiểm tra gói phù hợp và báo giá nhé. Nhà anh/chị là nhà riêng hay chung cư ạ?",
+        "output": "",
+        "time":20,
+        "reason": ""
+      }
+    ]
+  },
+  {
+    "user": "q7 hcm á e",
+    "asssistant": "Dạ anh/chị, em xin giới thiệu hai gói combo camera phù hợp cho nhà ở tại Quận 7, TP.HCM. \n1. Combo 2 Camera Trong Nhà \nĐặc điểm nổi bật: 2 camera 3MP, công nghệ xử lý hình ảnh thông minh, trí tuệ nhân tạo AI, kết nối đa dạng, lưu trữ cloud bảo mật. Phù hợp với người sống một mình hoặc gia đình nhỏ, nhà ở căn hộ hoặc nhà 1 tầng. \n<image>https://hi-static.fpt.vn/sys/shop/prod/2025-06-04/684066bc279b1_combo-2-camera-play4.jpg</image> \n2. Combo 3 Camera Trong Nhà \nĐặc điểm nổi bật: 3 camera 3MP, công nghệ xử lý hình ảnh thông minh, trí tuệ nhân tạo AI, kết nối đa dạng, lưu trữ cloud bảo mật. Phù hợp với gia đình sống trong căn hộ 2–3 phòng, nhà 1–2 tầng, giám sát toàn bộ không gian bên trong. \n<image>https://hi-static.fpt.vn/sys/shop/prod/2025-06-04/684068bc8eea1_combo-3-camera-play4.jpg</image> \nEm rất vui được hỗ trợ anh/chị lựa chọn gói phù hợp nhất. \nNếu anh/chị muốn biết giá chi tiết và tiến hành đăng ký, em cần lấy số điện thoại để gửi thông tin chính xác và nhanh chóng. \nAnh/chị vui lòng cung cấp số điện thoại để em tiếp tục hỗ trợ.",
+    "flow": [
+      {
+        "node_name": "User Input",
+        "input": "q7 hcm á e",
+        "output": "Dạ anh/chị, em xin giới thiệu hai gói combo camera phù hợp cho nhà ở tại Quận 7, TP.HCM. \n1. Combo 2 Camera Trong Nhà \nĐặc điểm nổi bật: 2 camera 3MP, công nghệ xử lý hình ảnh thông minh, trí tuệ nhân tạo AI, kết nối đa dạng, lưu trữ cloud bảo mật. Phù hợp với người sống một mình hoặc gia đình nhỏ, nhà ở căn hộ hoặc nhà 1 tầng. \n<image>https://hi-static.fpt.vn/sys/shop/prod/2025-06-04/684066bc279b1_combo-2-camera-play4.jpg</image> \n2. Combo 3 Camera Trong Nhà \nĐặc điểm nổi bật: 3 camera 3MP, công nghệ xử lý hình ảnh thông minh, trí tuệ nhân tạo AI, kết nối đa dạng, lưu trữ cloud bảo mật. Phù hợp với gia đình sống trong căn hộ 2–3 phòng, nhà 1–2 tầng, giám sát toàn bộ không gian bên trong. \n<image>https://hi-static.fpt.vn/sys/shop/prod/2025-06-04/684068bc8eea1_combo-3-camera-play4.jpg</image> \nEm rất vui được hỗ trợ anh/chị lựa chọn gói phù hợp nhất. \nNếu anh/chị muốn biết giá chi tiết và tiến hành đăng ký, em cần lấy số điện thoại để gửi thông tin chính xác và nhanh chóng. \nAnh/chị vui lòng cung cấp số điện thoại để em tiếp tục hỗ trợ.",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "Sale Model 1",
+        "input": "q7 hcm á e",
+        "output": "<tool_call>{'name': 'load_knowledge_from_documents_tool', 'arguments': {'product': 'camera trong nhà','address': 'Quận 7, TP.HCM'}}</tool_call>",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "use tool?",
+        "input": "<tool_call>{'name': 'load_knowledge_from_documents_tool', 'arguments': {'product': 'camera trong nhà','address': 'Quận 7, TP.HCM'}}</tool_call>",
+        "output": "True",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "Parse Tool_name/arguments",
+        "input": "<tool_call>{'name': 'load_knowledge_from_documents_tool', 'arguments': {'product': 'camera trong nhà','address': 'Quận 7, TP.HCM'}}</tool_call>",
+        "output": "name=load_knowledge_from_documents_tool, args={'product': 'camera trong nhà','address': 'Quận 7, TP.HCM'}",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "GPT-OSS Dọuble-check",
+        "input": "q7 hcm á e + <Kịch bản gọi tool> + <danh sách tool>",
+        "output": "{\n  'should_call_tool': true,\n  'tool_name': 'load_knowledge_from_documents_tool',\n  'arguments': {\n    'product': 'camera trong nhà',\n    'address': 'Quận 7, TP.HCM'\n  },\n  'reasoning': 'Cần cung cấp địa chỉ để lấy thông tin sản phẩm. Yêu cầu của model khác thiếu tham số 'address', nên từ chối và đề xuất gọi đúng tool.',\n  'agree_with_other_model': false\n}",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "confirm use tool?",
+        "input": "{\n  'should_call_tool': true,\n  'tool_name': 'load_knowledge_from_documents_tool',\n  'arguments': {\n    'product': 'camera trong nhà',\n    'address': 'Quận 7, TP.HCM'\n  },\n  'reasoning': 'Cần cung cấp địa chỉ để lấy thông tin sản phẩm. Yêu cầu của model khác thiếu tham số 'address', nên từ chối và đề xuất gọi đúng tool.',\n  'agree_with_other_model': false\n}",
+        "output": "True",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "GPT-OSS Slot-Filling",
+        "input": "'product': 'camera trong nhà' + <danh sách sản phẩm có sẵn>",
+        "output": "{\n  'filled_slots': {\n    'product': {\n      'value': 'camera',\n      'mapped_value': 'Camera',\n      'confidence': 'high'\n    }\n  },\n  'reason': 'Người dùng trực tiếp nói 'tư vấn camera' trong dòng hội thoại, nên giá trị gốc là 'camera'. Đây là một sản phẩm chung. Trong danh sách <lst_item_map> có mục 'Camera' khớp hoàn toàn với từ ngữ của khách hàng. Do đó ánh xạ thành 'Camera' với độ tin cậy cao.'\n}",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "Update Argument",
+        "input": "Old Arguments={'product': 'camera trong nhà','address': 'Quận 7, TP.HCM'} + New Arguments={'product': 'Camera','address': 'Quận 7, TP.HCM'}",
+        "output": "args={'product': 'Camera': 'Quận 7, TP.HCM'}",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "Tool Resource",
+        "input": "name=load_knowledge_from_documents_tool, args={'product': 'Camera','address': 'Quận 7, TP.HCM'}",
+        "output": "{'product': 'Camera', 'content': '-----\\n0. Loại hình dịch vụ: Combo Camera;Gói dịch vụ: Combo 2 Camera (Trong - Ngoài);Hình ảnh sản phẩm: https://hi-static.fpt.vn/sys/shop/prod/2025-05-14/68244652184c9_combo-2-camera.jpg;Mô tả gói: Phù hợp với:\\n \\n Người sống một mình / gia đình trẻ.\\n \\n Căn hộ chung cư, nhà nhỏ 1–2 tầng.\\n \\n Người mới bắt đầu lắp đặt hệ thống camera.\\n \\n Gia đình có người già / thú cưng cần theo dõi.;Tính năng nổi bật: Chất Lượng Hình Ảnh Chuẩn 3MP\\r\\nCông Nghệ Xử Lý Hình Ảnh Thông Minh \\r\\nTrí Tuệ Nhân Tạo AI Thế Hệ Mới\\r\\nKết Nối Đa Dạng\\r\\nLưu Trữ Cloud Bảo Mật\\n-----\\n1. Loại hình dịch vụ: Combo Camera;Gói dịch vụ: Combo 2 Camera Trong Nhà;Hình ảnh sản phẩm: https://hi-static.fpt.vn/sys/shop/prod/2025-06-04/684066bc279b1_combo-2-camera-play4.jpg;Mô tả gói: Phù hợp với: Người sống một mình / gia đình nhỏ. Nhà ở căn hộ / nhà 1 tầng. Gia đình có người lớn tuổi, trẻ nhỏ, thú cưng. Chủ nhà muốn theo dõi sinh hoạt, tài sản, an ninh bên trong mà không cần lắp đặt ngoài trời.;Tính năng nổi bật: Chất Lượng Hình Ảnh Chuẩn 3MP\\nTrí Tuệ Nhân Tạo AI Thế Hệ Mới\\nKết Nối Đa Dạng\\nLưu Trữ Cloud Bảo Mật\\n-----\\n2. Loại hình dịch vụ: Combo Camera;Gói dịch vụ: Combo 3 Camera (1 Trong - 2 Ngoài);Hình ảnh sản phẩm: https://hi-static.fpt.vn/sys/shop/prod/2025-05-14/68246118e982b_combo-3-camera.jpg;Mô tả gói: Phù hợp với:\\n \\n Nhà phố, biệt thự mini, căn hộ nhiều mặt thoáng.\\n \\n Gia đình muốn ưu tiên bảo vệ ngoại vi, nhưng vẫn cần quan sát bên trong.\\n \\n Người thường xuyên vắng nhà, cần cảnh báo chuyển động từ xa.;Tính năng nổi bật: Chất Lượng Hình Ảnh Chuẩn 3MP\\nCông Nghệ Xử Lý Hình Ảnh Thông Minh \\r\\nTrí Tuệ Nhân Tạo AI Thế Hệ Mới\\r\\nKết Nối Đa Dạng\\r\\nLưu Trữ Cloud Bảo Mật\\n-----\\n3. Loại hình dịch vụ: Combo Camera;Gói dịch vụ: Combo 3 Camera (2 Trong - 1 Ngoài);Hình ảnh sản phẩm: https://hi-static.fpt.vn/sys/shop/prod/2025-06-04/684068350ac86_combo-3-camera-v2.jpg;Mô tả gói: Phù hợp với: Căn hộ 2 phòng / nhà 1–2 tầng.\\n \\n Gia đình có người lớn tuổi, trẻ nhỏ, thú cưng.\\n \\n Người cần theo dõi nội thất kỹ lưỡng, nhưng vẫn đảm bảo bảo vệ cổng.\\n \\n Khách hàng mới lắp cam, ưu tiên sinh hoạt bên trong thay vì ngoài trời quá nhiều.;Tính năng nổi bật: Chất Lượng Hình Ảnh Chuẩn 3MP\\r\\nCông Nghệ Xử Lý Hình Ảnh Thông Minh \\r\\nTrí Tuệ Nhân Tạo AI Thế Hệ Mới\\r\\nKết Nối Đa Dạng\\r\\nLưu Trữ Cloud Bảo Mật\\n-----\\n4. Loại hình dịch vụ: Combo Camera;Gói dịch vụ: Combo 3 Camera Trong Nhà;Hình ảnh sản phẩm: https://hi-static.fpt.vn/sys/shop/prod/2025-06-04/684068bc8eea1_combo-3-camera-play4.jpg;Mô tả gói: Phù hợp với: Gia đình sống trong căn hộ 2–3 phòng, nhà 1–2 tầng.\\r\\n \\r\\n Người cần giám sát toàn bộ không gian bên trong.\\r\\n \\r\\n Gia đình có trẻ em, người già, người làm việc tại nhà.\\r\\n \\r\\n Người mới dùng camera, nhưng muốn hệ thống đầy đủ ngay từ đầu.;Tính năng nổi bật: Chất Lượng Hình Ảnh Chuẩn 3MP\\nCông Nghệ Xử Lý Hình Ảnh Thông Minh \\r\\nTrí Tuệ Nhân Tạo AI Thế Hệ Mới\\r\\nKết Nối Đa Dạng\\r\\nLưu Trữ Cloud Bảo Mật', 'status': 0}",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "GPT-OSS Final",
+        "input": "{'product': 'Camera', 'content': '-----\\n0. Loại hình dịch vụ: Combo Camera;Gói dịch vụ: Combo 2 Camera (Trong - Ngoài);Hình ảnh sản phẩm: https://hi-static.fpt.vn/sys/shop/prod/2025-05-14/68244652184c9_combo-2-camera.jpg;Mô tả gói: Phù hợp với:\\n \\n Người sống một mình / gia đình trẻ.\\n \\n Căn hộ chung cư, nhà nhỏ 1–2 tầng.\\n \\n Người mới bắt đầu lắp đặt hệ thống camera.\\n \\n Gia đình có người già / thú cưng cần theo dõi.;Tính năng nổi bật: Chất Lượng Hình Ảnh Chuẩn 3MP\\r\\nCông Nghệ Xử Lý Hình Ảnh Thông Minh \\r\\nTrí Tuệ Nhân Tạo AI Thế Hệ Mới\\r\\nKết Nối Đa Dạng\\r\\nLưu Trữ Cloud Bảo Mật\\n-----\\n1. Loại hình dịch vụ: Combo Camera;Gói dịch vụ: Combo 2 Camera Trong Nhà;Hình ảnh sản phẩm: https://hi-static.fpt.vn/sys/shop/prod/2025-06-04/684066bc279b1_combo-2-camera-play4.jpg;Mô tả gói: Phù hợp với: Người sống một mình / gia đình nhỏ. Nhà ở căn hộ / nhà 1 tầng. Gia đình có người lớn tuổi, trẻ nhỏ, thú cưng. Chủ nhà muốn theo dõi sinh hoạt, tài sản, an ninh bên trong mà không cần lắp đặt ngoài trời.;Tính năng nổi bật: Chất Lượng Hình Ảnh Chuẩn 3MP\\nTrí Tuệ Nhân Tạo AI Thế Hệ Mới\\nKết Nối Đa Dạng\\nLưu Trữ Cloud Bảo Mật\\n-----\\n2. Loại hình dịch vụ: Combo Camera;Gói dịch vụ: Combo 3 Camera (1 Trong - 2 Ngoài);Hình ảnh sản phẩm: https://hi-static.fpt.vn/sys/shop/prod/2025-05-14/68246118e982b_combo-3-camera.jpg;Mô tả gói: Phù hợp với:\\n \\n Nhà phố, biệt thự mini, căn hộ nhiều mặt thoáng.\\n \\n Gia đình muốn ưu tiên bảo vệ ngoại vi, nhưng vẫn cần quan sát bên trong.\\n \\n Người thường xuyên vắng nhà, cần cảnh báo chuyển động từ xa.;Tính năng nổi bật: Chất Lượng Hình Ảnh Chuẩn 3MP\\nCông Nghệ Xử Lý Hình Ảnh Thông Minh \\r\\nTrí Tuệ Nhân Tạo AI Thế Hệ Mới\\r\\nKết Nối Đa Dạng\\r\\nLưu Trữ Cloud Bảo Mật\\n-----\\n3. Loại hình dịch vụ: Combo Camera;Gói dịch vụ: Combo 3 Camera (2 Trong - 1 Ngoài);Hình ảnh sản phẩm: https://hi-static.fpt.vn/sys/shop/prod/2025-06-04/684068350ac86_combo-3-camera-v2.jpg;Mô tả gói: Phù hợp với: Căn hộ 2 phòng / nhà 1–2 tầng.\\n \\n Gia đình có người lớn tuổi, trẻ nhỏ, thú cưng.\\n \\n Người cần theo dõi nội thất kỹ lưỡng, nhưng vẫn đảm bảo bảo vệ cổng.\\n \\n Khách hàng mới lắp cam, ưu tiên sinh hoạt bên trong thay vì ngoài trời quá nhiều.;Tính năng nổi bật: Chất Lượng Hình Ảnh Chuẩn 3MP\\r\\nCông Nghệ Xử Lý Hình Ảnh Thông Minh \\r\\nTrí Tuệ Nhân Tạo AI Thế Hệ Mới\\r\\nKết Nối Đa Dạng\\r\\nLưu Trữ Cloud Bảo Mật\\n-----\\n4. Loại hình dịch vụ: Combo Camera;Gói dịch vụ: Combo 3 Camera Trong Nhà;Hình ảnh sản phẩm: https://hi-static.fpt.vn/sys/shop/prod/2025-06-04/684068bc8eea1_combo-3-camera-play4.jpg;Mô tả gói: Phù hợp với: Gia đình sống trong căn hộ 2–3 phòng, nhà 1–2 tầng.\\r\\n \\r\\n Người cần giám sát toàn bộ không gian bên trong.\\r\\n \\r\\n Gia đình có trẻ em, người già, người làm việc tại nhà.\\r\\n \\r\\n Người mới dùng camera, nhưng muốn hệ thống đầy đủ ngay từ đầu.;Tính năng nổi bật: Chất Lượng Hình Ảnh Chuẩn 3MP\\nCông Nghệ Xử Lý Hình Ảnh Thông Minh \\r\\nTrí Tuệ Nhân Tạo AI Thế Hệ Mới\\r\\nKết Nối Đa Dạng\\r\\nLưu Trữ Cloud Bảo Mật', 'status': 0} + <lịch sử chat để lấy nhu cầu của khách hàng> ",
+        "output": "Dạ anh/chị, em xin giới thiệu hai gói combo camera phù hợp cho nhà ở tại Quận 7, TP.HCM. \n1. Combo 2 Camera Trong Nhà \nĐặc điểm nổi bật: 2 camera 3MP, công nghệ xử lý hình ảnh thông minh, trí tuệ nhân tạo AI, kết nối đa dạng, lưu trữ cloud bảo mật. Phù hợp với người sống một mình hoặc gia đình nhỏ, nhà ở căn hộ hoặc nhà 1 tầng. \n<image>https://hi-static.fpt.vn/sys/shop/prod/2025-06-04/684066bc279b1_combo-2-camera-play4.jpg</image> \n2. Combo 3 Camera Trong Nhà \nĐặc điểm nổi bật: 3 camera 3MP, công nghệ xử lý hình ảnh thông minh, trí tuệ nhân tạo AI, kết nối đa dạng, lưu trữ cloud bảo mật. Phù hợp với gia đình sống trong căn hộ 2–3 phòng, nhà 1–2 tầng, giám sát toàn bộ không gian bên trong. \n<image>https://hi-static.fpt.vn/sys/shop/prod/2025-06-04/684068bc8eea1_combo-3-camera-play4.jpg</image> \nEm rất vui được hỗ trợ anh/chị lựa chọn gói phù hợp nhất. \nNếu anh/chị muốn biết giá chi tiết và tiến hành đăng ký, em cần lấy số điện thoại để gửi thông tin chính xác và nhanh chóng. \nAnh/chị vui lòng cung cấp số điện thoại để em tiếp tục hỗ trợ.",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "User Output",
+        "input": "",
+        "output": "Dạ anh/chị, em xin giới thiệu hai gói combo camera phù hợp cho nhà ở tại Quận 7, TP.HCM. \n1. Combo 2 Camera Trong Nhà \nĐặc điểm nổi bật: 2 camera 3MP, công nghệ xử lý hình ảnh thông minh, trí tuệ nhân tạo AI, kết nối đa dạng, lưu trữ cloud bảo mật. Phù hợp với người sống một mình hoặc gia đình nhỏ, nhà ở căn hộ hoặc nhà 1 tầng. \n<image>https://hi-static.fpt.vn/sys/shop/prod/2025-06-04/684066bc279b1_combo-2-camera-play4.jpg</image> \n2. Combo 3 Camera Trong Nhà \nĐặc điểm nổi bật: 3 camera 3MP, công nghệ xử lý hình ảnh thông minh, trí tuệ nhân tạo AI, kết nối đa dạng, lưu trữ cloud bảo mật. Phù hợp với gia đình sống trong căn hộ 2–3 phòng, nhà 1–2 tầng, giám sát toàn bộ không gian bên trong. \n<image>https://hi-static.fpt.vn/sys/shop/prod/2025-06-04/684068bc8eea1_combo-3-camera-play4.jpg</image> \nEm rất vui được hỗ trợ anh/chị lựa chọn gói phù hợp nhất. \nNếu anh/chị muốn biết giá chi tiết và tiến hành đăng ký, em cần lấy số điện thoại để gửi thông tin chính xác và nhanh chóng. \nAnh/chị vui lòng cung cấp số điện thoại để em tiếp tục hỗ trợ.",
+        "time":20,
+        "reason": ""
+      }
+    ]
+  },
+  {
+    "user": "0366452120",
+    "asssistant": "Dạ anh/chị, em xin giới thiệu hai gói Combo camera phù hợp với nhu cầu của anh/chị tại Quận 7, TP.HCM. \n\n1. Combo 2 Camera Ngoài Trời. Gói này gồm hai camera chất lượng cao, có khả năng ghi hình 24/7 và chống thời tiết, thích hợp cho việc giám sát nhà cửa, chuông cửa, hoặc khu vực ngoài trời. Giá của gói là 1,100,000.\n\n2. Combo 3 Camera Play3. Gói này cung cấp ba camera, có độ phân giải cao và tính năng ghi hình liên tục. Đây là lựa chọn linh hoạt cho việc giám sát nhiều khu vực trong nhà hoặc ngoài trời. Giá của gói là 1,500,000.\n\nAnh/chị vui lòng xác nhận lại địa chỉ Quận 7, TP.HCM và số điện thoại 0366452120 đã đúng chưa? Nếu cần thêm thông tin hoặc muốn đặt mua, em sẵn sàng hỗ trợ. Dạ.",
+    "flow": [
+      {
+        "node_name": "User Input",
+        "input": "q7 hcm á e",
+        "output": "Dạ anh/chị, em xin giới thiệu hai gói Combo camera phù hợp với nhu cầu của anh/chị tại Quận 7, TP.HCM. \n\n1. Combo 2 Camera Ngoài Trời. Gói này gồm hai camera chất lượng cao, có khả năng ghi hình 24/7 và chống thời tiết, thích hợp cho việc giám sát nhà cửa, chuông cửa, hoặc khu vực ngoài trời. Giá của gói là 1,100,000.\n\n2. Combo 3 Camera Play3. Gói này cung cấp ba camera, có độ phân giải cao và tính năng ghi hình liên tục. Đây là lựa chọn linh hoạt cho việc giám sát nhiều khu vực trong nhà hoặc ngoài trời. Giá của gói là 1,500,000.\n\nAnh/chị vui lòng xác nhận lại địa chỉ Quận 7, TP.HCM và số điện thoại 0366452120 đã đúng chưa? Nếu cần thêm thông tin hoặc muốn đặt mua, em sẵn sàng hỗ trợ. Dạ.",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "Sale Model 1",
+        "input": "q7 hcm á e",
+        "output": "<tool_call>{'name': 'load_price_from_documents_tool', 'arguments': {'product': 'camera'}</tool_call>",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "use tool?",
+        "input": "<tool_call>{'name': 'load_price_from_documents_tool', 'arguments': {'product': 'camera'}</tool_call>",
+        "output": "True",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "Parse Tool_name/arguments",
+        "input": "<tool_call>{'name': 'load_price_from_documents_tool', 'arguments': {'product': 'camera'}</tool_call>",
+        "output": "name=load_price_from_documents_tool, args={'product': 'camera '}",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "GPT-OSS Dọuble-check",
+        "input": "0366452120 + <lịch sử chat> + <Kịch bản gọi tool> + <danh sách tool>",
+        "output": "{\n  'should_call_tool': true,\n  'tool_name': 'load_price_from_documents_tool',\n  'arguments': {\n    'product': 'camera',\n    'address': 'Quận 7, TP.HCM',\n    'phone_number': '0366452120'\n  },\n  'reasoning': 'Cần gọi load_price_from_documents_tool để lấy giá chính thức; tham số còn thiếu trong đề xuất của mô hình nên được bổ sung.',\n  'agree_with_other_model': false\n}",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "confirm use tool?",
+        "input": "{\n  'should_call_tool': true,\n  'tool_name': 'load_price_from_documents_tool',\n  'arguments': {\n    'product': 'camera',\n    'address': 'Quận 7, TP.HCM',\n    'phone_number': '0366452120'\n  },\n  'reasoning': 'Cần gọi load_price_from_documents_tool để lấy giá chính thức; tham số còn thiếu trong đề xuất của mô hình nên được bổ sung.',\n  'agree_with_other_model': false\n}",
+        "output": "True",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "GPT-OSS Slot-Filling",
+        "input": "'product': 'camera' + <danh sách sản phẩm có sẵn> + <product lấy từ tool trước đó>",
+        "output": "",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "Update Argument",
+        "input": "Old Arguments={'product': 'camera'} + New Arguments={'product': 'Combo 2 Camera Trong Nhà, Combo 3 Camera Trong Nhà'}",
+        "output": "args={'product': 'Combo 2 Camera Trong Nhà, Combo 3 Camera Trong Nhà'}",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "Tool Resource",
+        "input": "name=load_knowledge_from_documents_tool, args={'product': 'Combo 2 Camera Trong Nhà, Combo 3 Camera Trong Nhà'}",
+        "output": "[{'system_name': 'Combo-Camera-Only-2-IQ4S', 'package_name': 'Combo 2 Camera Ngoài Trời', 'image_url': None, 'unit': None, 'description': ['Phù hợp với:', 'Nhà phố, biệt thự mini, cửa hàng, căn hộ có nhiều mặt thoáng.', 'Người cần giám sát không gian tiếp cận từ bên ngoài.', 'Hộ gia đình thường xuyên vắng nhà, cần phát hiện chuyển động từ xa.', 'Chủ nhà có nhu cầu bảo vệ từ cổng trước đến hành lang sau.'], 'note': None, 'detail_link': '', 'register_link': '', 'package_price': 1100000}, {'system_name': 'Combo-Camera-Only-2-Play3', 'package_name': 'Combo 2 Camera Play 3', 'image_url': None, 'unit': None, 'description': ['Phù hợp với:', 'Người sống một mình / gia đình nhỏ.', 'Nhà ở căn hộ / nhà 1 tầng.', 'Gia đình có người lớn tuổi, trẻ nhỏ, thú cưng.', 'Chủ nhà muốn theo dõi sinh hoạt, tài sản, an ninh bên trong mà không cần lắp đặt ngoài trời.'], 'note': None, 'detail_link': '', 'register_link': '', 'package_price': 1100000}, {'system_name': 'Combo-Camera-Only-3-IQ4S', 'package_name': 'Combo 3 Camera Ngoài Trời', 'image_url': None, 'unit': None, 'description': ['Phù hợp với:', 'Nhà phố nhiều mặt tiếp cận / biệt thự mini.', 'Hộ gia đình có sân vườn, ban công, hành lang mở.', 'Cơ sở kinh doanh cần bảo vệ từ ngoài vào (cửa hàng, nhà kho, văn phòng nhỏ).', 'Người thường xuyên vắng nhà, cần cảnh báo khi có chuyển động bên ngoài.'], 'note': None, 'detail_link': '', 'register_link': '', 'package_price': 1500000}, {'system_name': 'Combo-Camera-Only-3-Play3', 'package_name': 'Combo 3 Camera Play3', 'image_url': None, 'unit': None, 'description': ['Phù hợp với: Gia đình sống trong căn hộ 2–3 phòng, nhà 1–2 tầng.', 'Người cần giám sát toàn bộ không gian bên trong.', 'Gia đình có trẻ em, người già, người làm việc tại nhà.', 'Người mới dùng camera, nhưng muốn hệ thống đầy đủ ngay từ đầu.'], 'note': None, 'detail_link': '', 'register_link': '', 'package_price': 1500000}, {'system_name': 'Combo-Internet-Meta-F2', 'package_name': 'Combo Meta F2', 'image_url': None, 'unit': '/tháng', 'description': ['Modem Wi-Fi 6 và FPT Play Box', 'Kết nối lên đến 25 thiết bị', 'Phủ sóng mạnh cho nhà nhiều tầng, không gian rộng', '130+ kênh truyền hình trong nước và quốc tế', 'Tặng 02 Access Point', 'Tặng 01 Wi-Fi Mesh & 03 tháng Ultra Fast', 'Miễn phí 90 ngày F-safe'], 'note': 'Mức giá trên đã bao gồm VAT và có thể được thay đổi theo khu vực và thời điểm. Giá chưa bao gồm phí thuê thiết bị đầu cuối, phí thu tiền tận nhà và các dịch vụ gia tăng khác.', 'detail_link': '', 'register_link': '', 'package_price': 385000}]",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "GPT-OSS Final",
+        "input": "{'content': '\\n1. Sản phẩm: Combo 2 Camera Ngoài Trời. . Lưu ý: None tại địa chỉ: Phường Bình Thuận, Quận 7, Hồ Chí Minh.Gía là 1100000None\\n1. Sản phẩm: Combo 3 Camera Play3. . Lưu ý: None tại địa chỉ: Phường Bình Thuận, Quận 7, Hồ Chí Minh.Gía là 1500000None', 'status': 0}",
+        "output": "Dạ anh/chị, em xin giới thiệu hai gói Combo camera phù hợp với nhu cầu của anh/chị tại Quận 7, TP.HCM. \n\n1. Combo 2 Camera Ngoài Trời. Gói này gồm hai camera chất lượng cao, có khả năng ghi hình 24/7 và chống thời tiết, thích hợp cho việc giám sát nhà cửa, chuông cửa, hoặc khu vực ngoài trời. Giá của gói là 1,100,000.\n\n2. Combo 3 Camera Play3. Gói này cung cấp ba camera, có độ phân giải cao và tính năng ghi hình liên tục. Đây là lựa chọn linh hoạt cho việc giám sát nhiều khu vực trong nhà hoặc ngoài trời. Giá của gói là 1,500,000.\n\nAnh/chị vui lòng xác nhận lại địa chỉ Quận 7, TP.HCM và số điện thoại 0366452120 đã đúng chưa? Nếu cần thêm thông tin hoặc muốn đặt mua, em sẵn sàng hỗ trợ. Dạ.",
+        "time":20,
+        "reason": ""
+      },
+      {
+        "node_name": "User Output",
+        "input": "",
+        "output": "Dạ anh/chị, em xin giới thiệu hai gói Combo camera phù hợp với nhu cầu của anh/chị tại Quận 7, TP.HCM. \n\n1. Combo 2 Camera Ngoài Trời. Gói này gồm hai camera chất lượng cao, có khả năng ghi hình 24/7 và chống thời tiết, thích hợp cho việc giám sát nhà cửa, chuông cửa, hoặc khu vực ngoài trời. Giá của gói là 1,100,000.\n\n2. Combo 3 Camera Play3. Gói này cung cấp ba camera, có độ phân giải cao và tính năng ghi hình liên tục. Đây là lựa chọn linh hoạt cho việc giám sát nhiều khu vực trong nhà hoặc ngoài trời. Giá của gói là 1,500,000.\n\nAnh/chị vui lòng xác nhận lại địa chỉ Quận 7, TP.HCM và số điện thoại 0366452120 đã đúng chưa? Nếu cần thêm thông tin hoặc muốn đặt mua, em sẵn sàng hỗ trợ. Dạ.",
+        "time":20,
+        "reason": ""
+      }
+    ]
+  }
 ]

@@ -5,9 +5,10 @@ import Arrow from "./Arrow";
 
 interface ToolResourceWithArrowProps {
     isActive: boolean;
+    onNodeClick: () => void;
 }
 
-export default function ToolResourceWithArrow({ isActive }: ToolResourceWithArrowProps) {
+export default function ToolResourceWithArrow({ isActive, onNodeClick }: ToolResourceWithArrowProps) {
     return (
         <div className={`transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-50'}`}>
             {/* SVG for arrow */}
@@ -33,6 +34,7 @@ export default function ToolResourceWithArrow({ isActive }: ToolResourceWithArro
                 type="tool"
                 isActive={isActive}
                 position={{ x: 1898, y: 28 }}
+                onClick={onNodeClick}
             />
         </div>
     );

@@ -8,6 +8,7 @@ interface FlowNodeProps {
     type: "user" | "sale-model" | "gpt-oss" | "process" | "tool" | "decision";
     isActive: boolean;
     position: { x: number; y: number };
+    onClick?: () => void;
 }
 
 export default function FlowNode({
@@ -15,6 +16,7 @@ export default function FlowNode({
     type,
     isActive,
     position,
+    onClick,
 }: FlowNodeProps) {
     // Custom Icons
     const OpenAILogo = () => (
@@ -126,15 +128,22 @@ export default function FlowNode({
         return null;
     };
 
+    const handleClick = () => {
+        console.log('FlowNode clicked:', nodeName);
+        onClick?.();
+    };
+
     return (
         <motion.div
-            className="absolute flex items-center justify-center"
+            className="absolute flex items-center justify-center cursor-pointer"
             style={{ left: position.x, top: position.y }}
             animate={{
                 scale: isActive ? 1.15 : 1,
                 opacity: isActive ? 1 : 0.4,
             }}
             transition={{ duration: 0.3 }}
+            onClick={handleClick}
+            whileHover={{ scale: isActive ? 1.15 : 1.05 }}
         >
             <div className={`${getNodeStyle()} z-10 relative ${isActive ? 'ring-4 ring-[#C68E42] ring-opacity-70' : ''}`}>
                 {getIcon()}

@@ -5,9 +5,10 @@ import Arrow from "./Arrow";
 
 interface GptOssDoubleCheckWithArrowProps {
     isActive: boolean;
+    onNodeClick: () => void;
 }
 
-export default function GptOssDoubleCheckWithArrow({ isActive }: GptOssDoubleCheckWithArrowProps) {
+export default function GptOssDoubleCheckWithArrow({ isActive, onNodeClick }: GptOssDoubleCheckWithArrowProps) {
     return (
         <div className={`transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-50'}`}>
             {/* SVG for arrow */}
@@ -32,6 +33,7 @@ Double-Check"
                 type="gpt-oss"
                 isActive={isActive}
                 position={{ x: 1020, y: 178 }}
+                onClick={onNodeClick}
             />
         </div>
     );

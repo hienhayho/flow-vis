@@ -5,9 +5,10 @@ import Arrow from "./Arrow";
 
 interface UpdateArgumentsWithArrowProps {
     isActive: boolean;
+    onNodeClick: () => void;
 }
 
-export default function UpdateArgumentsWithArrow({ isActive }: UpdateArgumentsWithArrowProps) {
+export default function UpdateArgumentsWithArrow({ isActive, onNodeClick }: UpdateArgumentsWithArrowProps) {
     return (
         <div className={`transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-50'}`}>
             {/* SVG for arrow */}
@@ -32,6 +33,7 @@ Arguments"
                 type="process"
                 isActive={isActive}
                 position={{ x: 1610, y: 42 }}
+                onClick={onNodeClick}
             />
         </div>
     );

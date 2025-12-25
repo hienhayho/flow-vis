@@ -5,9 +5,10 @@ import Arrow from "./Arrow";
 
 interface UserWithArrowProps {
     isActive: boolean;
+    onNodeClick: () => void;
 }
 
-export default function UserWithArrow({ isActive }: UserWithArrowProps) {
+export default function UserWithArrow({ isActive, onNodeClick }: UserWithArrowProps) {
     return (
         <div className={`transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-50'}`}>
             {/* SVG for arrow */}
@@ -31,6 +32,7 @@ export default function UserWithArrow({ isActive }: UserWithArrowProps) {
                 type="user"
                 isActive={isActive}
                 position={{ x: 40, y: 338 }}
+                onClick={onNodeClick}
             />
         </div>
     );

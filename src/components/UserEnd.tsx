@@ -4,9 +4,10 @@ import FlowNode from "./FlowNode";
 
 interface UserEndProps {
     isActive: boolean;
+    onNodeClick: () => void;
 }
 
-export default function UserEnd({ isActive }: UserEndProps) {
+export default function UserEnd({ isActive, onNodeClick }: UserEndProps) {
     return (
         <div className={`transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-50'}`}>
             {/* User node at the end */}
@@ -15,6 +16,7 @@ export default function UserEnd({ isActive }: UserEndProps) {
                 type="user"
                 isActive={isActive}
                 position={{ x: 1020, y: 498 }}
+                onClick={onNodeClick}
             />
         </div>
     );

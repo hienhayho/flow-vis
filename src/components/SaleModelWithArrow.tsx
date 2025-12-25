@@ -5,9 +5,10 @@ import Arrow from "./Arrow";
 
 interface SaleModelWithArrowProps {
     isActive: boolean;
+    onNodeClick: () => void;
 }
 
-export default function SaleModelWithArrow({ isActive }: SaleModelWithArrowProps) {
+export default function SaleModelWithArrow({ isActive, onNodeClick }: SaleModelWithArrowProps) {
     return (
         <div className={`transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-50'}`}>
             {/* SVG for arrow */}
@@ -31,6 +32,7 @@ export default function SaleModelWithArrow({ isActive }: SaleModelWithArrowProps
                 type="sale-model"
                 isActive={isActive}
                 position={{ x: 260, y: 342 }}
+                onClick={onNodeClick}
             />
         </div>
     );
