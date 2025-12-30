@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ArrowDownCircle, ArrowUpCircle, Lightbulb, Copy, Check } from 'lucide-react';
+import { ArrowDownCircle, ArrowUpCircle, Lightbulb, Copy, Check, Pause, Play } from 'lucide-react';
 import FileUpload from '@/components/FileUpload';
 import ChatConversation from '@/components/ChatConversation';
 import FlowVisualization from '@/components/FlowVisualization';
@@ -164,7 +164,7 @@ export default function Home() {
   const [selectedNodeName, setSelectedNodeName] = useState<string | null>(null);
   const [showSampleSelector, setShowSampleSelector] = useState(false);
   const [availableSamples, setAvailableSamples] = useState<string[]>([]);
-  const { messages, currentNodeName, flowPath } = useFlowAnimation(conversationData);
+  const { messages, currentNodeName, flowPath, isAnimating, isPaused, togglePause } = useFlowAnimation(conversationData);
 
   // Get the active flow based on selected message
   const activeFlow = selectedMessageIndex !== null && conversationData
@@ -295,7 +295,7 @@ export default function Home() {
             </div>
           )}
           {conversationData && (
-            <div className="flex gap-4 relative">
+            <div className="flex gap-4 relative items-center">
               <button
                 onClick={() => setConversationData(null)}
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -328,6 +328,24 @@ export default function Home() {
                   </div>
                 )}
               </div>
+              {isAnimating && (
+                <button
+                  onClick={togglePause}
+                  className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium shadow-md"
+                >
+                  {isPaused ? (
+                    <>
+                      <Play size={18} />
+                      Resume
+                    </>
+                  ) : (
+                    <>
+                      <Pause size={18} />
+                      Pause
+                    </>
+                  )}
+                </button>
+              )}
             </div>
           )}
         </div>
