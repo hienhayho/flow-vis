@@ -466,7 +466,7 @@ export default function Home() {
                             </div>
                             {currentNode.input && <CopyButton text={currentNode.input} />}
                           </div>
-                          <div className="px-3 py-2.5">
+                          <div className="px-3 py-2.5 max-h-48 overflow-y-auto">
                             {currentNode.input ? (
                               <JsonContentRenderer content={currentNode.input} />
                             ) : (
@@ -486,7 +486,7 @@ export default function Home() {
                             </div>
                             {currentNode.output && <CopyButton text={currentNode.output} />}
                           </div>
-                          <div className="px-3 py-2.5">
+                          <div className="px-3 py-2.5 max-h-48 overflow-y-auto">
                             {currentNode.output ? (
                               <JsonContentRenderer content={currentNode.output} />
                             ) : (
@@ -503,7 +503,7 @@ export default function Home() {
                               Reason
                             </span>
                           </div>
-                          <div className="px-3 py-2.5">
+                          <div className="px-3 py-2.5 max-h-48 overflow-y-auto">
                             {currentNode.reason ? (
                               <p className="text-xs text-gray-600 leading-relaxed whitespace-pre-line">
                                 {currentNode.reason}
